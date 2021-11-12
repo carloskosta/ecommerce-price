@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  ecommerce-price:
+    image: ecommerce-price
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      - "JAVA_OPTS=-Dspring.profiles.active=standalone"
+    networks:
+      ecommerce-price:
+
+networks:
+  ecommerce-price:
+    driver: bridge

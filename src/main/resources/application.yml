@@ -1,0 +1,19 @@
+spring:
+
+  datasource:
+    url: jdbc:h2:mem:ecommerce_price
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+    hibernate:
+      ddl-auto: update
+
+  h2:
+    console.enabled: true
+    console.path: /h2-console
+    console.settings.trace: true
+    console.settings.web-allow-others: false

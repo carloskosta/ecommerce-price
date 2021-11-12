@@ -1,0 +1,81 @@
+openapi: 3.0.1
+info:
+  description: Ecommerce Price API
+  version: 1.0.0
+  title: Ecommerce Price API
+  contact:
+    email: carlos.rey.dacosta@gmail.com
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /ecommerce/price/:
+    post:
+      summary: Return price by brand, product and date.
+      operationId: getPrice
+      requestBody:
+        description: PriceCriteria
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/priceCriteria"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/priceResult"
+        '204':
+          description: No content
+          content: { }
+        '401':
+          description: Unauthorized
+          content: { }
+        '403':
+          description: Forbidden
+          content: { }
+        '404':
+          description: Not Found
+          content: { }
+        '500':
+          description: Internal server error
+          content: { }
+
+components:
+  schemas:
+    priceCriteria:
+      type: object
+      description: Price query criteria.
+      properties:
+        applyDate:
+          type: string
+          description: Apply Data
+        productId:
+          type: integer
+          description: Product ID
+        brandId:
+          type: integer
+          description: Brand ID
+    priceResult:
+      type: object
+      description: Price query criteria.
+      properties:
+        productId:
+          type: integer
+          description: Product ID
+        brandId:
+          type: integer
+          description: Brand ID
+        applyDateStart:
+          type: string
+          description: Apply Data start
+        applyDateEnd:
+          type: string
+          description: Apply Data start
+        priceList:
+          type: integer
+          description: Rate apply
+        price:
+          type: number
+          description: Final price
